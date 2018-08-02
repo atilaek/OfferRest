@@ -1,0 +1,37 @@
+{
+  "Offer": [
+    {
+      "id": 1,
+      "name": "Atilas Outdated Offer",
+      "Price": {
+        "amount": 20,
+        "currency": "Pound"
+      },
+      "description": "a default offer from Atila",
+      "expirationDate": "07-01-2018",
+      "cancelled": "true"
+    },
+    {
+      "id": 2,
+      "name": "Connors Still Valid Offer",
+      "Price": {
+        "amount": 5,
+        "currency": "Pound"
+      },
+      "description": "a default offer from Connor",
+      "expirationDate": "08-25-2018",
+      "cancelled": "false"
+    },
+    {
+      "id": 3,
+      "name": "Malcolms Still Valid Offer",
+      "Price": {
+        "amount": 10,
+        "currency": "Pound"
+      },
+      "description": "a default offer from Malcolm (had to add you too, Malcolm :P)",
+      "expirationDate": "12-30-2018",
+      "cancelled": "false"
+    }
+  ]
+}

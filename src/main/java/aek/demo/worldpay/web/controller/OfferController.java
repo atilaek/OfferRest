@@ -18,7 +18,7 @@ import aek.demo.worldpay.service.IOfferService;
 import aek.demo.worldpay.web.util.ResponseEntityFormer;
 
 /**
- * OfferController for REST.
+ * OfferController for REST service that calls OfferService for operations.
  *
  * @author Atila Ekimci
  */

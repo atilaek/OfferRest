@@ -11,6 +11,7 @@ import aek.demo.worldpay.service.repository.impl.OfferRepository;
 
 /**
  * OfferService service of for manipulating .json Offers data
+ * Calls Offer repository and being called by OfferController via OfferService Interface
  *
  * @author Atila Ekimci
  */

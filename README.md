@@ -30,6 +30,14 @@ http://localhost:8080/Worldpay/offer/{id}
 http://localhost:8080/Worldpay/offer/{id}
 - for testing SOAPUI.png & Rest Test IDEA.png can be a referance
 
+- offers are structured as
+        
+        1- Data Class - holds, sorts and lists Offers - has List of Offers as data
+        
+        2- Offer Class - has id, name, Price Class, description , expiration date, and cancelled as data
+        
+        3- Price Class - has amount and currency as data
+
 - offers are read through a json file and has three default offers:
 
 		1- Atilas Outdated offer

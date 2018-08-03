@@ -1,7 +1,9 @@
 package aek.demo.worldpay.service.exception;
 
 /**
- * Exception throwing class for giving controlled exceptions in Service Layer for Spring Boot App.
+ * Exception throwing class for giving controlled exceptions
+ * if Offer already exists
+ * in Service Layer for Spring Boot App.
  *
  * @author Atila Ekimci
  */

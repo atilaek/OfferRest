@@ -1,15 +1,14 @@
 package aek.demo.worldpay.service.repository.impl;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-
-import org.springframework.stereotype.Repository;
-
 import aek.demo.worldpay.domain.Data;
 import aek.demo.worldpay.domain.Offer;
 import aek.demo.worldpay.service.repository.IOfferRepository;
 import aek.demo.worldpay.service.repository.JsonReadWriter;
+import org.springframework.stereotype.Repository;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Repository of Offers that mainly reads from Json and has core functions.
@@ -22,6 +21,11 @@ public class OfferRepository implements IOfferRepository {
     private static Data data = null;
     private Map<Integer, Offer> offers = new HashMap<>();
 
+    /**
+     * Offer Repository Constructor.
+     * Calls @{@link JsonReadWriter} to read the file
+     * And puts offers in an ID mapped Map @{@link Map}.
+     */
     public OfferRepository() {
         data = JsonReadWriter.readJsonFile();
         Offer offer;
@@ -47,6 +51,12 @@ public class OfferRepository implements IOfferRepository {
         return offers.containsValue(offer);
     }
 
+    /**
+     * Adds a new offer with a new id to the list.
+     *
+     * @param newOffer @{@link Offer} the new offer to add.
+     * @return @int the id of the new offer.
+     */
     public int addOffer(final Offer newOffer) {
         int key = offers.size() + 1;
         newOffer.setId(key);

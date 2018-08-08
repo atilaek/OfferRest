@@ -22,7 +22,7 @@ public class Price {
     private String currency;
 
     /**
-     * No args constructor for use in serialization
+     * No args constructor for use in serialization.
      */
     public Price() {
     }
@@ -30,8 +30,8 @@ public class Price {
     /**
      * Price Constructor used for testing.
      *
-     * @param amount
-     * @param currency
+     * @param amount   the amount of the price.
+     * @param currency the current type of the price.
      */
     public Price(Integer amount, String currency) {
         super();

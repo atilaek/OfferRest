@@ -1,11 +1,8 @@
 package aek.demo.worldpay.web.controller;
 
-import static org.mockito.Mockito.*;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-
+import aek.demo.worldpay.domain.Offer;
+import aek.demo.worldpay.domain.Price;
+import aek.demo.worldpay.service.IOfferService;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -15,9 +12,11 @@ import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 import org.springframework.http.ResponseEntity;
 
-import aek.demo.worldpay.domain.Offer;
-import aek.demo.worldpay.domain.Price;
-import aek.demo.worldpay.service.IOfferService;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
+import static org.mockito.Mockito.*;
 
 /**
  * Testing OfferController class functions with mocking OfferService including exceptions
@@ -45,59 +44,59 @@ public class OfferControllerTest {
     }
 
     @Test
-    public void getAllOffersWillReturnAllTheOffers() {
+    public void getAllOffers_ShouldReturnAllTheOffers() {
         Assert.assertTrue(offerControllerTest.getAllOffers().getBody().contains("test1"));
     }
 
     @Test
-    public void getOfferByIDWillReturnTheExpectedOffer() {
-        Assert.assertTrue(((Offer)offerControllerTest.getOfferById(1).getBody()).getName().equals("test1"));
+    public void getOfferByID_ShouldReturnTheExpectedOffer() {
+        Assert.assertTrue(((Offer) offerControllerTest.getOfferById(1).getBody()).getName().equals("test1"));
     }
 
     @Test
-    public void getOfferByNONExistingIDWillReturnNotFoundResponse() {
+    public void getOfferByNONExistingID_ShouldReturnNotFoundResponse() {
         when(offerServiceMock.getOfferById(anyInt())).thenReturn(null);
         Assert.assertTrue(offerControllerTest.getOfferById(40).getStatusCode()
-                                  .equals(ResponseEntity.notFound().build().getStatusCode()));
+                .equals(ResponseEntity.notFound().build().getStatusCode()));
     }
 
     @Test
-    public void deleteOfferWillReturnTheExpectedId() {
+    public void deleteOffer_ShouldReturnTheExpectedId() {
         Assert.assertTrue(offerControllerTest.deleteOffer(1).getBody().equals(1));
     }
 
     @Test
-    public void deleteOfferByNONExistingIDWillReturnNotFoundResponse() {
+    public void deleteOfferByNONExistingID_ShouldReturnNotFoundResponse() {
         when(offerServiceMock.getOfferById(anyInt())).thenReturn(null);
         Assert.assertTrue(offerControllerTest.deleteOffer(40).getStatusCode()
-                                  .equals(ResponseEntity.notFound().build().getStatusCode()));
+                .equals(ResponseEntity.notFound().build().getStatusCode()));
     }
 
     @Test
-    public void updateOfferWillReturnTheExpectedId() {
+    public void updateOffer_ShouldReturnTheExpectedId() {
         Assert.assertTrue(offerControllerTest.updateOffer(1, new Offer()).getBody().equals(1));
     }
 
     @Test
-    public void updateOfferByNONExistingIDWillReturnNotFoundResponse() {
+    public void updateOfferByNONExistingID_ShouldReturnNotFoundResponse() {
         when(offerServiceMock.getOfferById(anyInt())).thenReturn(null);
         Assert.assertTrue(offerControllerTest.updateOffer(40, new Offer()).getStatusCode()
-                                  .equals(ResponseEntity.notFound().build().getStatusCode()));
+                .equals(ResponseEntity.notFound().build().getStatusCode()));
     }
 
     @Test
-    public void addOfferWillReturnTheExpectedId() {
+    public void addOffer_ShouldReturnTheExpectedId() {
         Assert.assertTrue(offerControllerTest.addOffer(new Offer()).getBody().equals(3));
 
     }
 
     private Offer createOffer(Integer id, String name) {
         return new Offer(id,
-                         name,
-                         new Price(20, "Pound"),
-                         "test description",
-                         "01-01-2050",
-                         "false"
+                name,
+                new Price(20, "Pound"),
+                "test description",
+                "01-01-2050",
+                "false"
         );
     }
 }

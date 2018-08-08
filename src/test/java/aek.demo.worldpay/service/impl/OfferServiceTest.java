@@ -1,12 +1,10 @@
 package aek.demo.worldpay.service.impl;
 
-import static org.mockito.Matchers.any;
-import static org.mockito.Matchers.anyInt;
-import static org.mockito.Mockito.*;
-
-import java.util.HashMap;
-import java.util.Map;
-
+import aek.demo.worldpay.domain.Offer;
+import aek.demo.worldpay.domain.Price;
+import aek.demo.worldpay.service.exception.OfferExistsException;
+import aek.demo.worldpay.service.exception.OfferNotFoundException;
+import aek.demo.worldpay.service.repository.impl.OfferRepository;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -15,11 +13,12 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import aek.demo.worldpay.domain.Offer;
-import aek.demo.worldpay.domain.Price;
-import aek.demo.worldpay.service.exception.OfferExistsException;
-import aek.demo.worldpay.service.exception.OfferNotFoundException;
-import aek.demo.worldpay.service.repository.impl.OfferRepository;
+import java.util.HashMap;
+import java.util.Map;
+
+import static org.mockito.Matchers.any;
+import static org.mockito.Matchers.anyInt;
+import static org.mockito.Mockito.when;
 
 /**
  * Testing OfferService class functions with mocking OfferRepository including exceptions
@@ -49,23 +48,23 @@ public class OfferServiceTest {
     }
 
     @Test
-    public void getAllOffersWillReturnAllTheOffers() {
+    public void getAllOffers_ShouldReturnAllTheOffers() {
         Assert.assertTrue(offerServiceTest.getAllOffers().contains("test1"));
     }
 
     @Test
-    public void getOfferByIDWillReturnTheExpectedOffer() {
+    public void getOfferByID_ShouldReturnTheExpectedOffer() {
         Assert.assertTrue(offerServiceTest.getOfferById(1).getName().equals("test1"));
     }
 
     @Test
-    public void getOfferByIDWillSetCancelledToTrueForTheOutdatedOffer() {
+    public void getOfferByID_ShouldSetCancelledToTrueForTheOutdatedOffer() {
         final Offer offer = new Offer(1,
-                                      "WillBeCancelled",
-                                      new Price(20, "Pound"),
-                                      "This Offer is not cancelled but outdated",
-                                      "01-01-1995",
-                                      "false"
+                "WillBeCancelled",
+                new Price(20, "Pound"),
+                "This Offer is not cancelled but outdated",
+                "01-01-1995",
+                "false"
         );
 
         when(offerRepositoryMock.getOffer(anyInt())).thenReturn(offer);
@@ -73,46 +72,46 @@ public class OfferServiceTest {
     }
 
     @Test
-    public void deleteOfferWillNotFail() {
+    public void deleteOffer_ShouldDeleteTheOffer() {
         offerServiceTest.deleteOffer(1);
     }
 
     @Test(expected = OfferNotFoundException.class)
-    public void deleteNONExistingOfferThrowsException() {
+    public void deleteOffer_ShouldThrowException_IfOfferDoesntExist() {
         when(offerRepositoryMock.containsKey(anyInt())).thenReturn(false);
         offerServiceTest.deleteOffer(5);
     }
 
     @Test
-    public void updateOfferWillNotFail() {
+    public void updateOffer_ShouldUpdateTheOffer() {
         offerServiceTest.updateOffer(new Offer(), 1);
     }
 
     @Test(expected = OfferNotFoundException.class)
-    public void updateNONExistingOfferThrowsException() {
+    public void updateOffer_ShouldThrowException_IfOfferDoesntExist() {
         when(offerRepositoryMock.containsKey(anyInt())).thenReturn(false);
         offerServiceTest.updateOffer(new Offer(), 5);
     }
 
     @Test
-    public void addOfferWillReturnTheExpectedId() {
+    public void addOffer_ShouldReturnTheNewOfferId() {
         Assert.assertTrue(offerServiceTest.addOffer(new Offer()) == 3);
 
     }
 
     @Test(expected = OfferExistsException.class)
-    public void addExistingOfferThrowsException() {
+    public void addExistingOffer_ShouldThrowException_IfOfferAlreadyExists() {
         when(offerRepositoryMock.hasOffer(any(Offer.class))).thenReturn(true);
         offerServiceTest.addOffer(createOffer(2, "Existing Offer"));
     }
 
     private Offer createOffer(Integer id, String name) {
         return new Offer(id,
-                         name,
-                         new Price(20, "Pound"),
-                         "test description",
-                         "01-01-2050",
-                         "false"
+                name,
+                new Price(20, "Pound"),
+                "test description",
+                "01-01-2050",
+                "false"
         );
     }
 

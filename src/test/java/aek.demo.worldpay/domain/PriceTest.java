@@ -1,11 +1,11 @@
 package aek.demo.worldpay.domain;
 
-import static org.junit.Assert.*;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.runners.MockitoJUnitRunner;
+
+import static org.junit.Assert.assertEquals;
 
 /**
  * Testing basic functions of Price Pojo's new implemented functions
@@ -24,7 +24,7 @@ public class PriceTest {
 	}
 
     @Test
-    public void toStringReturnsExpectedString() {
+    public void toString_ShouldReturnsExpectedString() {
         final String expectedString = "amount: \'20\' currency: \'Pound\'";
 	    assertEquals("ToString function returned different result",
                       expectedString, price.toString());

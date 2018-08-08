@@ -1,9 +1,9 @@
 package aek.demo.worldpay.domain;
 
-import static org.junit.Assert.*;
-
 import org.junit.Before;
 import org.junit.Test;
+
+import static org.junit.Assert.*;
 
 /**
  * Testing basic functions of Offer Pojo's new implemented functions
@@ -18,32 +18,32 @@ public class OfferTest {
     }
 
     @Test
-    public void isCancelledWillReturnTrueForCancelledOffer() {
+    public void isCancelled_ShouldReturnTrueForCancelledOffer() {
         assertTrue(createOffer("true", "08-25-2018").isCancelled());
     }
 
     @Test
-    public void isCancelledWillReturnFalseForNOTCancelledOffer() {
+    public void isCancelled_ShouldReturnFalseForNotCancelledOffer() {
         assertFalse(createOffer("false", "08-25-2018").isCancelled());
     }
 
     @Test
-    public void isCancelledWillReturnTrueForCorruptedTexts() {
+    public void isCancelled_ShouldReturnTrueForCorruptedTexts() {
         assertTrue(createOffer("ture", "08-25-2018").isCancelled());
     }
 
     @Test
-    public void isOutdatedWillReturnTrueForOutdatedOffer() {
+    public void isOutdated_ShouldReturnTrueForOutdatedOffer() {
         assertTrue(createOffer("true", "01-01-2005").isOutdated());
     }
 
     @Test
-    public void isOutdatedWillReturnFalseForNOTOutdateOffer() {
+    public void isOutdated_ShouldReturnFalseForNotOutdatedOffer() {
         assertFalse(createOffer("true", "01-01-2100").isOutdated());
     }
 
     @Test
-    public void toStringWillReturnExpectedString() {
+    public void toString_ShouldReturnExpectedString() {
         final String expectedString = "Id: \'1'\n" +
                 "Name: \'testOffer\'\n" +
                 "Price: amount: \'20\' currency: \'Pound\'\n" +
@@ -52,16 +52,16 @@ public class OfferTest {
                 "Expired: \'true\'\n" +
                 "\n";
         assertEquals("ToString function returned different result",
-                     expectedString, createOffer("true", "01-01-2020").toString());
+                expectedString, createOffer("true", "01-01-2020").toString());
     }
 
     private Offer createOffer(String cancelled, String expirationDate) {
         return new Offer(1,
-                         "testOffer",
-                         new Price(20, "Pound"),
-                         "test description",
-                         expirationDate,
-                         cancelled
+                "testOffer",
+                new Price(20, "Pound"),
+                "test description",
+                expirationDate,
+                cancelled
         );
     }
 

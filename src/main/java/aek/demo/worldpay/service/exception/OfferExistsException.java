@@ -7,7 +7,7 @@ package aek.demo.worldpay.service.exception;
  *
  * @author Atila Ekimci
  */
-final public class OfferExistsException extends RuntimeException {
+public final class OfferExistsException extends RuntimeException {
 
     public OfferExistsException() {
         super();

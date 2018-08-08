@@ -1,11 +1,10 @@
 package aek.demo.worldpay.service.repository;
 
-import java.io.File;
-import java.io.IOException;
-
+import aek.demo.worldpay.domain.Data;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import aek.demo.worldpay.domain.Data;
+import java.io.File;
+import java.io.IOException;
 
 /**
  * Class for json file reading.
@@ -16,6 +15,11 @@ public class JsonReadWriter {
 
     private static final String fileName = "./offers_data.json";
 
+    /**
+     * Reads Json file through the static file path and put them in a @{@link Data} object.
+     *
+     * @return @{@link Data}
+     */
     public static Data readJsonFile() {
         ObjectMapper mapper = new ObjectMapper();
         Data data = null;
@@ -29,6 +33,11 @@ public class JsonReadWriter {
         return data;
     }
 
+    /**
+     * Gets @{@link Data} object and writes to Json file through the static file path.
+     *
+     * @param data Data object that has the list of offers
+     */
     public static void writeToJsonFile(Data data) {
         ObjectMapper mapper = new ObjectMapper();
 

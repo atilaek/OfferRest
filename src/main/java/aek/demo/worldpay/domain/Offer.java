@@ -1,17 +1,17 @@
 package aek.demo.worldpay.domain;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-
 /**
- * Offer POJO based on http://www.jsonschema2pojo.org
+ * Offer POJO based on http://www.jsonschema2pojo.org.
  *
  * @author Atila Ekimci
  */
@@ -39,7 +39,7 @@ public class Offer {
     private String cancelled;
 
     /**
-     * No args constructor for use in serialization
+     * Offer Constructor used for testing.
      */
     public Offer() {
     }
@@ -47,25 +47,15 @@ public class Offer {
     /**
      * Offer Constructor used for testing.
      *
-     *
-     * @param cancelled
-     * @param expirationDate
-     * @param price
-     * @param description
-     * @param name
+     * @param name           name of the Offer
+     * @param description    the description about the specific offer
+     * @param price          the price of the offer
+     * @param expirationDate the date until when the offer will be valid
+     * @param cancelled      boolean data that tells if offer is cannceled (inactive)
      */
     public Offer(Integer id, String name, Price price, String description, String expirationDate, String cancelled) {
         super();
         this.id = id;
-        this.name = name;
-        this.price = price;
-        this.description = description;
-        this.expirationDate = expirationDate;
-        this.cancelled = cancelled;
-    }
-
-    public Offer(String name, Price price, String description, String expirationDate, String cancelled) {
-        super();
         this.name = name;
         this.price = price;
         this.description = description;
@@ -133,6 +123,11 @@ public class Offer {
         this.cancelled = cancelled;
     }
 
+    /**
+     * Checks if the offer is not valid anymore.
+     *
+     * @return @{@link Boolean}
+     */
     public Boolean isCancelled() {
         if (this.cancelled.equalsIgnoreCase("false")) {
             return false;
@@ -140,6 +135,11 @@ public class Offer {
         return true;
     }
 
+    /**
+     * Checks if the offers expiration date is passed.
+     *
+     * @return @{@link Boolean}
+     */
     public Boolean isOutdated() {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM-dd-yyyy");
         Date tempDate;

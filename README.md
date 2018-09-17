@@ -1,4 +1,4 @@
-# Worldpay Job Application Demo 
+# Offer REST Server With Spring for REST
 1-This is a Spring Boot Rest API
 
 2- Run WorldpayOffersServer class

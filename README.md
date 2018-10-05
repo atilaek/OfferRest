@@ -56,7 +56,7 @@ if they are outdated (as time goes) then they get cancelled
 
 
 
-NOTES TO DISCUSS IN THE INTERVIEW:
+NOTES:
 1- if value returns null from the webservice ,
 it throws a controlled exception to boot
 

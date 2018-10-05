@@ -1,7 +1,7 @@
 # Offer REST Server With Spring for REST
 1-This is a Spring Boot Rest API
 
-2- Run WorldpayOffersServer class
+2- Run OffersServer class
 (RunDebugConf.png)
 
 3- in Browser:
